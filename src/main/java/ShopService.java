@@ -19,15 +19,15 @@ public class ShopService {
         return allMyProducts.list();
     }
 
-    public List<Order> listOrders() {
-        return allMyOrders.list();
-    }
-
     public void addOrder(Order order) {
         allMyOrders.addOrder(order);
     }
-}
 
-   /* listOrder(OrderRepo allMyOrders){
+    public Order getOrder(String id){
+        return allMyOrders.getOrder(id);
     }
-    }*/
+
+    public List<Order> listOrders() {
+        return allMyOrders.list();
+    }
+}

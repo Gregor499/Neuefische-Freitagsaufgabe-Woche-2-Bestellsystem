@@ -5,6 +5,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShopServiceTest {
+    @Test
 
     void shouldReturnProduct(){
         ShopService testShop = new ShopService(new ProductRepo(), new OrderRepo());
@@ -38,6 +39,23 @@ public class ShopServiceTest {
         //when
         int actual = testShop.listOrders().size();
         int expected = 1;
+        //then
+        assertEquals(expected, actual);
+    }
+
+    @Test
+
+    void shouldReturnOrder(){
+        ProductRepo testProductRepo = new ProductRepo();
+        OrderRepo testOrderRepo = new OrderRepo();
+        ShopService testShop = new ShopService(testProductRepo, testOrderRepo);
+        List<Product> testProductsList = testShop.listProducts();
+        Order testOrder = new Order(testProductRepo.getProduct(testProductsList.get(0).getProductId()));
+        testShop.addOrder(testOrder);
+        List<Order> testOrderList = testShop.listOrders();
+        //when
+        String expected = testOrder.getOrderId();
+        String actual = testOrderList.get(0).getOrderId();
         //then
         assertEquals(expected, actual);
     }
